@@ -1,23 +1,23 @@
-# # Class Work 1.0
+# Class Work 1.0
 
-# print("The itsy bitsy spider\nclimbed up the waterspout.")
-# print()
-# print("Down came the rain\nand washed the spider out.")
+print("The itsy bitsy spider\nclimbed up the waterspout.")
+print()
+print("Down came the rain\nand washed the spider out.")
 
-# print("\n\n\n\n\n\nn")
+print("\n\n\n\n\n\nn")
 
-# print('\\\\\\\\\\\\')
+print('\\\\\\\\\\\\')
 
 
-# print("The itsy bitsy spider", "climbed up", "the waterspout.")
+print("The itsy bitsy spider", "climbed up", "the waterspout.")
 
-# print("My name is", "Pyhton.", end=" ")
-# print("Monty Pyhton.")
+print("My name is", "Pyhton.", end=" ")
+print("Monty Pyhton.")
 
-# print("My", "name", "is", "Monty", "Pyhton", sep="-")
+print("My", "name", "is", "Monty", "Pyhton", sep="-")
 
-# print("My", "name", "is", sep="_", end="*")
-# print("Monty", "Pyhton", sep="*", end="*\n")
+print("My", "name", "is", sep="_", end="*")
+print("Monty", "Pyhton", sep="*", end="*\n")
 
 # Окталы
 
