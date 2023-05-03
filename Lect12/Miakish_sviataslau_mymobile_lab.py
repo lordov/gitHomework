@@ -19,10 +19,7 @@ class MobilePhone:
             return f'mobile phone {self.number} is turned on'
         else:
             return 'mobile phone alredy on!'
-                     
-
         
-
     def turn_off(self):
         '''
         Метод класса, который позволяет выключить
@@ -45,6 +42,7 @@ class MobilePhone:
             return f'calling {cally}'
         else:
             return f'The phone is OFF'  
+
 
 mobile1 = MobilePhone('375296841633')
 mobile2 = MobilePhone('375445750828')
@@ -69,10 +67,6 @@ def main():
     print('You have entered the following numbers:', [phone.number for ph in phone_list])
     
     
-
-
-
-
 if __name__ == '__main__':
     print('mymobile_lab.py запущена сама по себе')
     main()

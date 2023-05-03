@@ -43,14 +43,11 @@ class Timer:
         return Timer(total_hours, total_minutes, total_seconds)
     
 
-
-
 tim1 = Timer(21, 58, 50)
 tim2 = Timer(2, 59, 53)
  
 print(tim1 + tim2)
 print(tim1 - tim2)
-
 
 
 if __name__ == '__main__':

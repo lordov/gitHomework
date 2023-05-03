@@ -23,6 +23,7 @@ class ObserverB:
         if product.value  < 3:
             print("ObserverB: Reacted to the event")
 
+
 publisher = Publisher()
 print()
 observer_a = ObserverA()
