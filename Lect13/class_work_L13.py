@@ -39,3 +39,20 @@ gorbachev("zato u menia primia")
     
 # combiner('a', "b", exec = "yes")
 
+class Example:
+    __internal_counter = 0
+
+    def __init__(self, value):
+        Example.__internal_counter += 1
+
+    @classmethod
+    def get_internal(cls):
+        return f'# of objects created: {cls.__internal_counter}'
+    
+
+print(Example.get_internal())
+
+examle1 = Example(10)
+print(Example.get_internal())
+examle2 = Example(50)
+print(Example.get_internal())
