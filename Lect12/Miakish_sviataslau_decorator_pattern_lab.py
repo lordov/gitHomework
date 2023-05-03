@@ -5,8 +5,10 @@ def check(func):
         return res
     return inner_wrapper
 
+
 @check
 def foo(a):
     return f'moo - {a}'
+
 
 print(foo(123))

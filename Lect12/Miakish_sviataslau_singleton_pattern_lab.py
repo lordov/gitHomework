@@ -18,6 +18,7 @@ class Singelton:
     def useful_function():
         return 42
 
+
 if __name__ == "__main__":
     singelton_obj = Singelton()
     print(singelton_obj)
