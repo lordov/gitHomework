@@ -1,26 +1,26 @@
-def decor(fnct):
-    def inner_wrapper(arg):
-        print('СССР Всё ещё, что?...')
-        print(fnct(arg))
+# def decor(fnct):
+#     def inner_wrapper(arg):
+#         print('СССР Всё ещё, что?...')
+#         print(fnct(arg))
     
-    return inner_wrapper
+#     return inner_wrapper
 
 
-@decor
-def lenin(take):
-    return take, True
+# @decor
+# def lenin(take):
+#     return take, True
 
-@decor
-def stalin(take):
-    return take, True
+# @decor
+# def stalin(take):
+#     return take, True
 
-@decor
-def gorbachev(take):
-    return take, False
+# @decor
+# def gorbachev(take):
+#     return take, False
 
-lenin('Ya strou socialism')
-stalin("odni plasch i sapogi")
-gorbachev("zato u menia primia")
+# lenin('Ya strou socialism')
+# stalin("odni plasch i sapogi")
+# gorbachev("zato u menia primia")
 
 
 # def simple_decorator(own_function):
