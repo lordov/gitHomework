@@ -75,6 +75,7 @@ class Todo:
         self.c.execute('INSERT INTO tasks (name, priority) VALUES (?, ?)',
                        (self.task_name, self.priority))
         self.conn.commit()
+        
 
     def find_task(self, task_name):
         '''
@@ -146,6 +147,7 @@ def show_main_task():
                 5. Show menu
                 0. Exit        
                 ''')
+   
             
 def menu_controller(put = 0):
     '''Контролер который выполняет методы, 
@@ -162,10 +164,9 @@ def menu_controller(put = 0):
             print(e.message)
         except PriorityExc as e:
             print(e.message)
-        except:
-            print("Something goes bad ")
         else:
-            print("The task was added successfully.")
+            print(f"Name : {app.task_name}\npriority: {app.priority} \
+                  \nWas added successfully.")
         finally:
             print()
     
@@ -177,8 +178,6 @@ def menu_controller(put = 0):
             print(e.message)
         except IdExc as e:
             print(e.message)
-        except:
-            print("Soms bad")
         else:
             print('The task was updated successfully.')
         finally:
@@ -190,8 +189,6 @@ def menu_controller(put = 0):
             app.delete_task()
         except IdExc as e:
             print(e.message)
-        except:
-            print("Soms bad")
         else:
             print('The task was updated successfully.')
         finally:
