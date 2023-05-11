@@ -1,5 +1,6 @@
 from datetime import datetime
 
+
 def time_stampin_machine(fun):
     def inner_wrapepr(*args):
         print(datetime.now().strftime('%H:%M:%S'))
