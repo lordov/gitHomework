@@ -168,8 +168,8 @@ def menu_controller(put = 0):
             app.add_task()
         except NameExc as e:
             print(e.message)
-        except PriorityExc as e:
-            print(e.message)
+        except PriorityExc as p:
+            print(p.message)
         else:
             print(f"Name : {app.task_name}\npriority: {app.priority} \
                   \nWas added successfully.")
@@ -180,8 +180,8 @@ def menu_controller(put = 0):
         # Обновляем приоритет.
         try:
             app.update_priority()
-        except PriorityExc as e:
-            print(e.message)
+        except PriorityExc as p:
+            print(p.message)
         except IdExc as e:
             print(e.message)
         else:
@@ -193,8 +193,8 @@ def menu_controller(put = 0):
         # Удаляем задачу.
         try:
             app.delete_task()
-        except IdExc as e:
-            print(e.message)
+        except IdExc as i:
+            print(i.message)
         else:
             print('The task was updated successfully.')
         finally:
@@ -210,6 +210,7 @@ def menu_controller(put = 0):
         
     
 def main():
+    # Доделать убрать контроллер сделать мейн
     '''Основная программа, для использования пользователем.'''
     show_main_task()
     put = int(input("Enter what you want 1, 2, 3 , 4 , 5 or 0 for exit: "))

@@ -83,3 +83,13 @@
 # conn.commit()
 
 # conn.close()
+
+# import xml.etree.ElementTree as ET
+
+# tree = ET.parse('books.xml')
+# root = tree.getroot()
+# print("The root tag is:", root.tag)
+# for child in root:
+#     print(child.tag, child.attrib['title'])
+# for author in root.iter('author'):
+#     print(author.text)
