@@ -66,7 +66,7 @@ class Todo:
         '''
         Конструктор класса, который открывает соеденение с БД.
         '''
-        self.conn = sqlite3.connect(config['mariadb']['name'])
+        self.conn = sqlite3.connect(config['db']['name'])
         self.c = self.conn.cursor()
         self.create_tasks_table()
         
@@ -109,16 +109,10 @@ class Todo:
         которое ввел пользователь
         '''
         self.task_name = task_name
-        find = False
 
-        rows = self.c.execute('''SELECT id, name, priority FROM tasks;''')
-
-        for row in rows:
+        for row in self.c.execute('''SELECT id, name, priority FROM tasks;'''):
             if row[1] == self.task_name:
-                find = True
                 return row
-        else:
-            return None
             
     def show_tasks(self):
         '''
@@ -152,7 +146,13 @@ class Todo:
         self.numid = int(input('Enter id which you want to delete:'))
         if self.numid < 1:
             raise IdExc
+        
+        self.c.execute('''SELECT COUNT(*) FROM TASKS WHERE ID = ?;''', (self.numid,))
+        rows = self.c.fetchone()[0]
 
+        if rows == 0:
+            raise IdExc
+        
         self.c.execute('''DELETE FROM TASKS WHERE ID = ?;''',(self.numid,))
         self.conn.commit()    
 
@@ -189,9 +189,14 @@ def show_main_task():
             
 def main():
     '''Основная программа, для использования пользователем.'''
+    app = Todo()
+
     show_main_task()
     # Запрашиваем у пользователя ввод.
-    put = int(input("Enter what you want 1, 2, 3 , 4 , 5, 6 or 0 for exit: "))
+    try:
+        put = int(input("Enter what you want 1, 2, 3 , 4 , 5, 6 or 0 for exit: "))
+    except:
+        put = -1
     while put != 0:
         if put == 1:
             # Показываем задачи которые записаны в БД.
@@ -210,8 +215,6 @@ def main():
             else:
                 print(f"Name : {app.task_name}\npriority: {app.priority} \
                     \nWas added successfully.")
-            finally:
-                print()
         elif put == 3: 
             # Обновляем приоритет.
             try:
@@ -224,8 +227,6 @@ def main():
                 print("Invalid input. Please enter a valid option")
             else:
                 print('The task was updated successfully.')
-            finally:
-                print() 
         elif put == 4:
             # Удаляем задачу.
             try:
@@ -236,8 +237,6 @@ def main():
                 print("Invalid input. Please enter a valid option")
             else:
                 print('The task was updated successfully.')
-            finally:
-                print()
         elif put == 5:
             # Выводим меню программы.
             show_main_task()
@@ -247,15 +246,16 @@ def main():
             app.task_export_csv(filename + '.csv')
         else:
             print("Invalid input. Please enter a valid option")
-       
-        put = int(input("Enter what you want 1, 2, 3 , 4 ,5, 6 or 0 for exit: "))
+        try:
+            put = int(input("Enter what you want 1, 2, 3 , 4 ,5, 6 or 0 for exit: "))
+        except:
+            put = -1
     else:
         app.close_connection()
         
         
 if __name__ == "__main__":
     print('main.py запущена сама по себе')
-    app = Todo()
     main()
 else:
     print('main.py импортирована')    
