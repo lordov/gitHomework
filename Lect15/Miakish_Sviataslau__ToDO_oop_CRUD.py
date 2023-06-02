@@ -4,8 +4,6 @@ import configparser
 import csv
 
 
-config = configparser.ConfigParser()
-config.read('config.ini')
 
 
 FORMAT = '%(name)s:%(levelname)s:%(asctime)s:%(message)s'
@@ -26,7 +24,8 @@ class PriorityExc(Exception):
     Класс ошибки приоритета. В котором есть логирование,
     чтобы при вызове ошибок сразу записывалось все в файл.
     '''
-    def __init__(self, head = "ToDoPriorityError", message = "Bad priority"):
+
+    def __init__(self, head="ToDoPriorityError", message="Bad priority"):
         super().__init__(message)
         self.head = head
         self.message = message
@@ -38,7 +37,8 @@ class IdExc(Exception):
     Класс ошибки ID.В котором есть логирование,
     чтобы при вызове ошибок сразу записывалось все в файл.
     '''
-    def __init__(self, head = "ToDoIDError", message = "Bad ID!"):
+
+    def __init__(self, head="ToDoIDError", message="Bad ID!"):
         super().__init__(message)
         self.head = head
         self.message = message
@@ -50,32 +50,41 @@ class NameExc(Exception):
     Класс ошибки наименования.В котором есть логирование,
     чтобы при вызове ошибок сразу записывалось все в файл.
     '''
-    def __init__(self, head = "ToDoTaskNameError", message = "Bad name!"):
+
+    def __init__(self, head="ToDoTaskNameError", message="Bad name!"):
         super().__init__(message)
         self.head = head
         self.message = message
         logger.critical(f'{self.head, self.message}')
 
 
+class Config:
+    def __init__(self):
+        self.config = configparser.ConfigParser()
+        self.config.read('config.ini')
+
 class Todo:
     '''
     Класс, который позвоялет нам работать с БД, с помощью
     различных методов.
     '''
-    def __init__(self):
+
+    def __init__(self, config: Config):
         '''
         Конструктор класса, который открывает соеденение с БД.
         '''
-        self.conn = sqlite3.connect(config['db']['name'])
+        self.my_config = config
+        self.conn = sqlite3.connect(
+            self.my_config.config['db']['name'])
         self.c = self.conn.cursor()
         self.create_tasks_table()
-        
+
     def create_tasks_table(self):
         '''
         Метод, который создает таблицу tasks если такой нет в БД.
         '''
         self.c.execute('''CREATE TABLE IF NOT EXISTS tasks (
-        id INTEGER PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL,
         priority INTEGER NOT NULL
         );''')
@@ -88,20 +97,19 @@ class Todo:
         self.task_name = input('Enter task name: ')
         if len(self.task_name) < 5 or self.task_name.isspace():
             raise NameExc
-        
+
         res = self.find_task(self.task_name)
 
-        if res != None: 
-            raise NameExc(message = "This name already in tasks!")
+        if res != None:
+            raise NameExc(message="This name already in tasks!")
 
         self.priority = int(input("Enter priority: "))
         if self.priority < 1 or self.priority > 100:
             raise PriorityExc
-        
+
         self.c.execute('INSERT INTO tasks (name, priority) VALUES (?, ?)',
                        (self.task_name, self.priority))
         self.conn.commit()
-        
 
     def find_task(self, task_name):
         '''
@@ -113,7 +121,7 @@ class Todo:
         for row in self.c.execute('''SELECT id, name, priority FROM tasks;'''):
             if row[1] == self.task_name:
                 return row
-            
+
     def show_tasks(self):
         '''
         Метод, который показывает какие текущие задачи есть в БД.
@@ -122,7 +130,7 @@ class Todo:
         print("ID  | Task name | Priority")
         for row in self.c.execute('''SELECT * FROM tasks;'''):
             print(row)
-        
+
     def update_priority(self):
         '''
         Метод который обновляет приоритет в БД по ID.
@@ -146,15 +154,16 @@ class Todo:
         self.numid = int(input('Enter id which you want to delete:'))
         if self.numid < 1:
             raise IdExc
-        
-        self.c.execute('''SELECT COUNT(*) FROM TASKS WHERE ID = ?;''', (self.numid,))
+
+        self.c.execute(
+            '''SELECT COUNT(*) FROM TASKS WHERE ID = ?;''', (self.numid,))
         rows = self.c.fetchone()[0]
 
         if rows == 0:
             raise IdExc
-        
-        self.c.execute('''DELETE FROM TASKS WHERE ID = ?;''',(self.numid,))
-        self.conn.commit()    
+
+        self.c.execute('''DELETE FROM TASKS WHERE ID = ?;''', (self.numid,))
+        self.conn.commit()
 
     def close_connection(self):
         '''Метод который закрывает соединение с БД.'''
@@ -162,12 +171,13 @@ class Todo:
         print('Connection was closed, bye')
         self.c.close()
         self.conn.close()
-    
+
     def task_export_csv(self, filename):
         '''Метод, который экспортирует данные из таблицы tasks в файл СSV.'''
         self.filename = filename
         with open(self.filename, 'w', newline='') as csvfile:
-            writer = csv.writer(csvfile, delimiter=',', quotechar='"', quoting= csv.QUOTE_MINIMAL)
+            writer = csv.writer(csvfile, delimiter=',',
+                                quotechar='"', quoting=csv.QUOTE_MINIMAL)
             self.c.execute('SELECT id, name, priority FROM tasks')
             rows = self.c.fetchall()
             for row in rows:
@@ -175,8 +185,8 @@ class Todo:
 
 
 def show_main_task():
-            # Выводим меню для пользователя
-            print('''
+    # Выводим меню для пользователя
+    print('''
                 1. Show Tasks
                 2. Add Task
                 3. Change Priority
@@ -185,11 +195,13 @@ def show_main_task():
                 6. Export to CSV.
                 0. Exit        
                 ''')
-   
-            
+
+
 def main():
     '''Основная программа, для использования пользователем.'''
-    app = Todo()
+    my_config = Config()
+    app = Todo(my_config)
+    
 
     show_main_task()
     # Запрашиваем у пользователя ввод.
@@ -201,7 +213,7 @@ def main():
         if put == 1:
             # Показываем задачи которые записаны в БД.
             app.show_tasks()
-    
+
         elif put == 2:
             try:
                 app.add_task()
@@ -209,18 +221,18 @@ def main():
             except NameExc as e:
                 print(e.message)
             except PriorityExc as e:
-                print(e.message)
+                e.handle_priority()
             except:
                 print("Invalid input. Please enter a valid option")
             else:
                 print(f"Name : {app.task_name}\npriority: {app.priority} \
                     \nWas added successfully.")
-        elif put == 3: 
+        elif put == 3:
             # Обновляем приоритет.
             try:
                 app.update_priority()
             except PriorityExc as e:
-                print(e.message)
+                e.handle_priority()
             except IdExc as e:
                 print(e.message)
             except:
@@ -241,22 +253,23 @@ def main():
             # Выводим меню программы.
             show_main_task()
         elif put == 6:
-            filename = input('Введите имя файла в который вы хотите сохранить бд:')
+            filename = input(
+                'Введите имя файла в который вы хотите сохранить бд:')
             # Экспортируем в файл CSV.
             app.task_export_csv(filename + '.csv')
         else:
             print("Invalid input. Please enter a valid option")
         try:
-            put = int(input("Enter what you want 1, 2, 3 , 4 ,5, 6 or 0 for exit: "))
+            put = int(
+                input("Enter what you want 1, 2, 3 , 4 ,5, 6 or 0 for exit: "))
         except:
             put = -1
     else:
         app.close_connection()
-        
-        
+
+
 if __name__ == "__main__":
     print('main.py запущена сама по себе')
     main()
 else:
-    print('main.py импортирована')    
-                
+    print('main.py импортирована')

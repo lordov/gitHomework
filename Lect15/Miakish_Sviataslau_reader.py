@@ -23,39 +23,39 @@ def main():
     while enter != 0:
         if enter == 1:
             # Читаем документ как список.
-            with open('contacts.csv', newline = "") as csvfile:
-                reader = csv.reader(csvfile, delimiter = ",")
+            with open('contacts.csv', newline="") as csvfile:
+                reader = csv.reader(csvfile, delimiter=",")
                 for row in reader:
                     print(row)
         elif enter == 2:
             # Читаем документ как строки через ','.
-            with open('contacts.csv', newline = "") as csvfile:
-                reader = csv.reader(csvfile, delimiter = ",")
+            with open('contacts.csv', newline="") as csvfile:
+                reader = csv.reader(csvfile, delimiter=",")
                 for row in reader:
                     print(",".join(row))
         elif enter == 3:
             # Читаем документ как словарь.
-            with open('contacts.csv', newline = "") as csvfile:
+            with open('contacts.csv', newline="") as csvfile:
                 reader = csv.DictReader(csvfile)
                 for row in reader:
                     print(row["Name"], ':', row["Phone"])
-        elif enter == 4:  
+        elif enter == 4:
             # Читаем документ с указанием заголовков заголовками.
-            with open('contacts.csv', newline = "") as csvfile:
+            with open('contacts.csv', newline="") as csvfile:
                 filednames = ['Name', 'Phone']
                 reader = csv.DictReader(csvfile, fieldnames=filednames)
                 for row in reader:
                     print(row["Name"], ':', row["Phone"])
         # Прочитать только имена.
         elif enter == 5:
-            with open('contacts.csv', newline = "") as csvfile:
+            with open('contacts.csv', newline="") as csvfile:
                 filednames = ['Name', 'Phone']
                 reader = csv.DictReader(csvfile, fieldnames=filednames)
                 for row in reader:
                     print(row["Name"])
         # Прочитать только номера.
         elif enter == 6:
-            with open('contacts.csv', newline = "") as csvfile:
+            with open('contacts.csv', newline="") as csvfile:
                 filednames = ['Name', 'Phone']
                 reader = csv.DictReader(csvfile, fieldnames=filednames)
                 for row in reader:
@@ -71,4 +71,4 @@ if __name__ == "__main__":
     print('main.py запущена сама по себе')
     main()
 else:
-    print('main.py импортирована')   
+    print('main.py импортирована')

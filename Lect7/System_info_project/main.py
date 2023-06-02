@@ -22,12 +22,11 @@ def main():
         else:
             print("Не понимаю!")
 
-        platfrom_operation = input("Доступные операции 1 2 3 4 5, exit, help:") 
+        platfrom_operation = input("Доступные операции 1 2 3 4 5, exit, help:")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("main.py - Запущена как самостоятельный модуль.")
     main()
 else:
     print("main.py - Запущена как импортируемый модуль.")
-    

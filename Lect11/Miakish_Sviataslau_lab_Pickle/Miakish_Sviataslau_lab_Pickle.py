@@ -4,7 +4,7 @@ import pickle
 class Book:
     def __init__(self):
         self.pages = []
-    
+
     def add_page(self, text):
         self.pages.append(f'Page: {len(self.pages) + 1} - {text}')
 
@@ -27,4 +27,3 @@ with open('data.pickle', 'rb') as fo:
 
 for page in new_book:
     print(page)
-    

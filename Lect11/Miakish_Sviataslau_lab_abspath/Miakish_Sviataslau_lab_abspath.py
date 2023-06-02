@@ -14,5 +14,5 @@ li = [li for li in range(5)]
 di = {1: 'Задача № '}
 results = f'{li} + {SEP} + {di}'
 
-with open(PATH_TO_SAVE, 'w', encoding= "utf-8") as file:
+with open(PATH_TO_SAVE, 'w', encoding="utf-8") as file:
     file.write(results)

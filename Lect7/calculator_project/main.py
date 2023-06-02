@@ -3,17 +3,15 @@ from packages.calculator.show_condition_module import cond_list
 
 
 def main():
-
     cond_list()
     operator = int(input("Введи номер операции:"))
 
     while operator != -1:
-
         if operator == 0:
             cond_list()
-        else:  
-            number1 = int(input('Введите первое число --> '))
-            number2 = int(input('Введите второе число --> '))
+        else:
+            number1 = int(input("Введите первое число --> "))
+            number2 = int(input("Введите второе число --> "))
 
             if operator == 1:
                 print(summa(number1, number2))
@@ -28,8 +26,8 @@ def main():
     exit()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print("main.py - Запущена как самостоятельный модуль.")
     main()
 else:
-    print("main.py - Запущена как импортируемый модуль.")      
+    print("main.py - Запущена как импортируемый модуль.")

@@ -5,14 +5,12 @@ class Stack:
     def __init__(self):
         self.__stack_list = []
 
-    
     def push(self, val):
         '''
         Метод push, который позволяет добавлять в списки экзэмпляров значения.
         '''
         self.__stack_list.append(val)
-    
-    
+
     def pop(self):
         '''
         Метод pop, который позволяет удалять последнее значение в списках экзэмпляра.
@@ -22,6 +20,8 @@ class Stack:
         return val
 
 # Создаем второй класс наследуемый от класса Stack.
+
+
 class CountingStack(Stack):
     # Создаем конструктор класса.
     def __init__(self):
@@ -31,8 +31,7 @@ class CountingStack(Stack):
     # Метод класса, который будет возвращать количество итераций.
     def get_counter(self):
         return self.__counter
-    
-    
+
     def pop(self):
         '''
         Метод класса, который удаляет последнее значение из списка,

@@ -26,4 +26,4 @@ print(my_phone_book.get_numbers_list())
 if __name__ == '__main__':
     print('main.py запущена сама по себе')
 else:
-    print('main.py импортирована')    
+    print('main.py импортирована')

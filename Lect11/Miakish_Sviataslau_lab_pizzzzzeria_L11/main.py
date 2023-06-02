@@ -8,7 +8,7 @@ class PizzaError(Exception):
 
 
 class MuchChesseError(Exception):
-    
+
     def __init__(self, pizza, cheese, message):
         super().__init__(pizza, message)
         self.cheese = cheese
@@ -17,10 +17,11 @@ class MuchChesseError(Exception):
 class Pizzeria:
     # Текущий список пицц.
     list_of_pizzas = ["margarita", "capricciosa", "calzone", "mafia"]
+
     def __init__(self):
         self.pizza = ''
         self.__pizza_to_remove = ''
-    
+
     def add_pizza(self, pizza):
         '''
         Метод, который добовляет пиццу в меню пицц, если такая пицца 
@@ -29,7 +30,7 @@ class Pizzeria:
         self.pizza = pizza
         if self.pizza in Pizzeria.list_of_pizzas:
             raise PizzaError(self.pizza, 'pizza already in menu')
-        
+
         # Добовляем пиццу и выводим сообщение об этом.
         Pizzeria.list_of_pizzas.append(self.pizza)
         print(self.pizza, ": Succesfully added to menu !")
@@ -43,7 +44,7 @@ class Pizzeria:
         self.__pizza_to_remove = pizza
         if self.__pizza_to_remove not in Pizzeria.list_of_pizzas:
             raise PizzaError(self.pizza, "pizza not exist!")
-        
+
         # Удаляем пиццу из списка и выводим сообщение об этом.
         Pizzeria.list_of_pizzas.remove(self.__pizza_to_remove)
         print(self.__pizza_to_remove, ": Succesfully removed from list of pizza!")
@@ -55,11 +56,12 @@ class Order(Pizzeria):
     Класс для оформления заказа с последующей
     записью заказа в файл.
     '''
+
     def __init__(self):
         super().__init__()
         self.orders = {}
         self.counter = 1
-        self._fo = open('pizzas_order.txt', 'wt', encoding = "utf-8")
+        self._fo = open('pizzas_order.txt', 'wt', encoding="utf-8")
         self._fo.close()
 
     def make_order(self, pizza, cheese):
@@ -70,10 +72,12 @@ class Order(Pizzeria):
             raise PizzaError(self.mpizza, "no such pizza!")
 
         if self.__cheese > 100:
-            raise MuchChesseError(self.mpizza, self.__cheese, "too much cheese")
+            raise MuchChesseError(
+                self.mpizza, self.__cheese, "too much cheese")
         # Записываем заказ в виде словарая.
-        self.orders.update({self.counter : f'{self.mpizza} : {self.__cheese}'})
-        print('Order:', self.counter, self.orders[self.counter], ': Has succesfully created!')
+        self.orders.update({self.counter: f'{self.mpizza} : {self.__cheese}'})
+        print('Order:', self.counter,
+              self.orders[self.counter], ': Has succesfully created!')
 
         try:
             # Открываем файл в режиме "добавить в конец".
@@ -84,7 +88,7 @@ class Order(Pizzeria):
             # Закрываем файл.
             self._fo.close()
         except IOError as err:
-            print('Error - ', strerror(err.errno)) 
+            print('Error - ', strerror(err.errno))
         else:
             print("Succesfully written to file!")
             self.counter += 1
@@ -92,13 +96,14 @@ class Order(Pizzeria):
 
 order = Order()
 
+
 def main():
     # Добавляем пиццу.
     for pz in ['peperoni', "margarita", "mafia"]:
         try:
             order.add_pizza(pz)
         except PizzaError as pe:
-            print(f'{pe} : {pe.pizza}' )
+            print(f'{pe} : {pe.pizza}')
 
     print()
     print()
@@ -123,9 +128,8 @@ def main():
         print()
 
 
-
 if __name__ == '__main__':
     print('pizzeria_L11.py запущена сама по себе')
     main()
 else:
-    print('pizzeria_L11.py импортирована')  
+    print('pizzeria_L11.py импортирована')

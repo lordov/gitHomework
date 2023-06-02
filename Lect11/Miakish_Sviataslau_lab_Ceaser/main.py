@@ -5,6 +5,7 @@ ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 FILE_TO_READ = "tiger.png"
 PATH_TO_READ = os.path.join(ROOT_DIR, FILE_TO_READ)
 
+
 def main():
     for key in range(0, 255, 25):
         im = Image.open(PATH_TO_READ)
@@ -12,8 +13,9 @@ def main():
 
         width, height = im.size  # Определяем размер картинки в пикселях.
         for wdt in range(0, width):  # x - от 0 до размера картинки в пикселях.
-            for hgt in range(0, height):  # y - от 0 до размера картинки в пикселях.
-            # Извлекаем значения RGB пикселя находящегося по координатам wdt/hgt.
+            # y - от 0 до размера картинки в пикселях.
+            for hgt in range(0, height):
+                # Извлекаем значения RGB пикселя находящегося по координатам wdt/hgt.
                 (Red, Green, Blue) = imag[wdt, hgt]
             # Мегяем RGB значения пикселей по Цезарю.
                 Red, Green, Blue = (
@@ -22,7 +24,7 @@ def main():
                     (Blue + key) % 255,
                 )
             # Сохраняем значения RGB для пикселя по координатам wdt/hgt
-                imag[wdt, hgt] =  (Red, Green, Blue)
+                imag[wdt, hgt] = (Red, Green, Blue)
         im.save(os.path.join(ROOT_DIR, f'cezar_tiger-{key}.png'))
 
 

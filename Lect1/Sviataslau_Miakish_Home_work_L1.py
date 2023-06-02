@@ -12,7 +12,7 @@ print("Pyhton")
 # Home work 1.2.
 
 print("    *", "   * *", "  *   *", " *     *",
-       "***   ***",  "  *   *",  "  *   *",  "  *****", sep="\n")
+      "***   ***",  "  *   *",  "  *   *",  "  *****", sep="\n")
 
 # Home work 1.3.
 
@@ -22,7 +22,7 @@ print('''""Python""''')
 
 # Home work 1.4.
 
-#Создание переменых.
+# Создание переменых.
 
 john_apples = 4
 mary_apples = 10
@@ -47,7 +47,7 @@ print(kilometers, "kilometers is", round(kilometers_by_miles, 2), "miles")
 
 # Home work 1.6.
 
-hours = 2 
+hours = 2
 seconds = 3600
 
 print("Hours:", hours)

@@ -13,10 +13,12 @@ print("""
 """)
 
 # Cоздаем функцию вычисления ИМТ.
+
+
 def bmi(weight="", height=""):
     '''Формула вычисления ИМТ и условия проверки.'''
-    if weight <= 0 or height <=0 \
-    or weight >200 or height > 2.:
+    if weight <= 0 or height <= 0 \
+            or weight > 200 or height > 2.:
         return "Введи другое значение"
     imt = weight / height ** 2
     print(f"Ваш ИМТ {imt}")
@@ -36,11 +38,14 @@ def bmi(weight="", height=""):
         print("Ожирение 3 степени")
     return imt
 
+
 # Запрашиваем данные у пользователя.
-weig, heig = float(input("Введите ваш вес:")), float(input("Введите ваш рост:"))
+weig, heig = float(input("Введите ваш вес:")), float(
+    input("Введите ваш рост:"))
 # Запускаем цикл обработки данных и выводим результат.
-while  weig != -1.0 and heig != -1.0:
+while weig != -1.0 and heig != -1.0:
     bmi(weig, heig)
-    weig, heig = float(input("Введите ваш вес:")), float(input("Введите ваш рост:"))
+    weig, heig = float(input("Введите ваш вес:")), float(
+        input("Введите ваш рост:"))
 else:
-    print("Спасибо что воспользовались программой!")        
+    print("Спасибо что воспользовались программой!")

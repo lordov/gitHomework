@@ -1,16 +1,22 @@
+import sys
+
+
 # Home work 5.1
 
 # Запрашиваем у пользователя номер года.
+
+
 def leap(year):
     '''Функция которая вычисляет высокосный год или нет, а так же возвращает 
     ошибку, если год не в пределах Григорианского календаря.'''
-    # Произвожу вычисления высокосный год или нет и вывожу результат. 
+    # Произвожу вычисления высокосный год или нет и вывожу результат.
     if year % 4 != 0:
         return False
     elif year < 1582:
-        return False   
+        return False
     else:
         return True
+
 
 print(leap(1900))
 
@@ -27,6 +33,7 @@ for i in range(len(test_data)):
         print("Failed")
 
 # Home work 5.2
+
 
 def BYN_to_USD(dollars):
     """Конвертирует BYN в USD."""
@@ -47,8 +54,8 @@ print(BYN_to_USD(250))
 
 # Home work 5.3
 
-import sys
 print(sys.getrecursionlimit())
+
 
 def factorial(number):
     if number == 0:
@@ -63,15 +70,16 @@ factorial(1000)
 
 # Homwe work 5.4
 
+
 def febo(number):
     ''' Вычисляем числа Фибоначчи циклом for'''
     if number < 1 or \
-    number == 3:
+            number == 3:
         return 1
     fib1, fib2 = 1, 1
     for i in range(2, number):
         fib1, fib2 = fib2, fib1 + fib2
-    print(fib2)   
+    print(fib2)
 
 
 # Просим пользователя ввести число.

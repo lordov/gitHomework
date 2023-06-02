@@ -5,7 +5,7 @@ def object_counter(class_):
         if name == "mileage":
             print("we noticed that the mileage attribute was read")
         return class_.__getattr__orig(self, name)
-    
+
     class_.__getattribute__ = new_getattr
     return class_
 

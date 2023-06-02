@@ -4,14 +4,16 @@ import random
 
 FORMAT = '%(levelname)s - %(message)s'
 
+
 class BatterySimulation:
     '''Класс, который включает в себя коннструктор класса, который
     принимает в качестве экземпляра логгер, и метода, который симулирует
     перегрев телефона.
     '''
+
     def __init__(self, logger):
         self.logger = logger
-    
+
     def simulate_last_hour(self):
         '''Метод, который симулирует перегрев телефона и
         в зависимости от температуры печатает ошибку.
@@ -24,9 +26,10 @@ class BatterySimulation:
             elif temperature >= 30 and temperature <= 35:
                 self.logger.warning(f'{temperature} C')
             elif temperature > 35:
-                self.logger.critical(f'{temperature} C')  
+                self.logger.critical(f'{temperature} C')
             else:
                 raise Exception('Temperture out of range.')
+
 
 def main():
     logger = logging.getLogger('Battery.temperture')
@@ -47,4 +50,4 @@ if __name__ == '__main__':
     print('temperature_model запущена сама по себе')
     main()
 else:
-    print('temperature_model импортирована')  
+    print('temperature_model импортирована')

@@ -5,6 +5,7 @@ class PhoneContact:
     '''Класс телефонного контакта, который включает в себя конструктор класса,
     который принимает в качестве экзэмпляров класса, Имя и номер телефон.    
     '''
+
     def __init__(self, name, phone):
         self.name = name
         self.phone = phone
@@ -14,9 +15,10 @@ class Phone():
     '''Класс телефон, который имеет телефонный список и два метода:
     загрузка контактов из csv файла и поиск загруженных контактов.
     '''
+
     def __init__(self):
         self.contacts = []
-    
+
     def load_contacts_from_csv(self, file):
         '''
         Метод для импорта контактов из csv файла.
@@ -33,7 +35,7 @@ class Phone():
         count = 0
         for contact in self.contacts:
             if phrase.lower() in contact.name.lower() \
-                or phrase in contact.phone:
+                    or phrase in contact.phone:
                 print(f'{contact.name}, {contact.phone}')
                 count += 1
         if count == 0:
@@ -67,9 +69,9 @@ def main():
             else:
                 enter = int(input("Введи номер задачи."))
 
-   
+
 if __name__ == '__main__':
     print('labphoneebook.py запущена сама по себе')
     main()
 else:
-    print('labphoneebook.py импортирована')  
+    print('labphoneebook.py импортирована')

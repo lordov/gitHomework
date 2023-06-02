@@ -11,7 +11,7 @@ print("""
 """)
 # Empty dictonary for values.
 school_class = {}
-# Ask the name of the student. 
+# Ask the name of the student.
 name = input("Enter the student's name: ")
 
 while name != "":
@@ -27,6 +27,6 @@ while name != "":
     name = input("Enter the student's name: ")
 
 
-# Calculate average scores and output the values. 
+# Calculate average scores and output the values.
 for name in sorted(school_class.keys()):
-    print(name,':', sum(school_class[name]) / len(school_class[name]))
+    print(name, ':', sum(school_class[name]) / len(school_class[name]))

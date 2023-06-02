@@ -6,7 +6,7 @@ def main():
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
 
-    li = [x for x in range(0,50)]
+    li = [x for x in range(0, 50)]
     li_op = [0 if op % 2 == 0 else 1 for op in range(0, 50)]
 
     for a, b in zip(li, li_op):
@@ -20,7 +20,7 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()
     print('Программа заупщена самостоятельно.')
 else:
     print('Программа запущена как модуль.')

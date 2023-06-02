@@ -23,4 +23,4 @@ while user_result != 0:
         user_result = int(input('Put 1 2 3 4 5 6 or 0 for exit (^-^): '))
     elif user_result != comp_result:
         print("are you loser")
-        user_result = int(input('Put 1 2 3 4 5 6 or 0 for exit (^-^): '))  
+        user_result = int(input('Put 1 2 3 4 5 6 or 0 for exit (^-^): '))

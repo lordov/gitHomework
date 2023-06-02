@@ -9,9 +9,9 @@ class VK_Account:
             return True
         else:
             return False
-        
 
-account_numbers = ['8' * 12, "7" * 12, "001", "2222"*2, "23435" ]
+
+account_numbers = ['8' * 12, "7" * 12, "001", "2222"*2, "23435"]
 
 for element in account_numbers:
     if VK_Account.validate(element):

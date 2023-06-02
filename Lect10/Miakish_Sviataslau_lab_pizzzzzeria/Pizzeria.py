@@ -15,10 +15,11 @@ class Pizzeria:
     Конструктор класса, который представляет из себя
     приватный список из трех пицц.
     '''
+
     def __init__(self):
         self.__pizza_list = ["margherita", "capricciosa", "calzone"]
-    
-    def make_pizza(self,pizza, chesse):
+
+    def make_pizza(self, pizza, chesse):
         '''
         Метод который принимает два значения
         и выводит сообщения об ошибке если значения
@@ -32,6 +33,7 @@ class Pizzeria:
             raise MuchChesseError(pizza, chesse, "too much cheese")
         print("Pizza ready")
 
+
 def main():
     # Создаем экземпляр класса
     pizza_test = Pizzeria()
@@ -44,11 +46,11 @@ def main():
         except MuchChesseError as much:
             print(f'{much} : {much.cheese}')
         except PizzaError as pe:
-            print(f'{pe} : {pe.pizza}' )
+            print(f'{pe} : {pe.pizza}')
 
 
 if __name__ == '__main__':
     print('pizzeria.py запущена сама по себе')
     main()
 else:
-    print('pizzeria.py импортирована')  
+    print('pizzeria.py импортирована')

@@ -10,13 +10,14 @@ class PhoneNumbersList:
     # Создаем пременную класса с пустым списком.
     __numbers_lsit = []
     # Констркутор класса.
+
     def __init__(self):
-        self.number  = 0
+        self.number = 0
 
     # Метод класса который возвращает список номеров.
     def get_numbers_list(self):
         return PhoneNumbersList.__numbers_lsit
-    
+
     # Метод класса для добавления номеров в переменную класса.
     def add_number(self, number: str):
         '''
@@ -27,13 +28,11 @@ class PhoneNumbersList:
         if number.isnumeric():
             PhoneNumbersList.__numbers_lsit.append(number)
             return True
-        
+
         raise PhoneNumberError(number, 'contain not numbers')
-    
 
 
 if __name__ == '__main__':
     print('Miakish_Sviataslau_lab_phonebook.py запущена сама по себе')
 else:
-    print('Miakish_Sviataslau_lab_phonebook.py импортирована')    
-    
+    print('Miakish_Sviataslau_lab_phonebook.py импортирована')

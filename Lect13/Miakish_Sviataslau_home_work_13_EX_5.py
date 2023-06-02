@@ -7,7 +7,7 @@ class LuxuryWatch:
     @classmethod
     def get_number_of_watches_created(cls):
         return cls.watches_created
-    
+
     @classmethod
     def with_engraving(cls, text):
         if LuxuryWatch.check_text(text):
@@ -16,7 +16,7 @@ class LuxuryWatch:
             return _watch
         else:
             raise Exception(text + '- it does not follow the "alpha" rule')
-    
+
     @staticmethod
     def check_text(text: str):
         if len(text) > 40:
@@ -24,6 +24,7 @@ class LuxuryWatch:
         if not text.isalpha():
             return False
         return True
+
 
 print("Watches created so far:", LuxuryWatch.get_number_of_watches_created())
 w1 = LuxuryWatch()

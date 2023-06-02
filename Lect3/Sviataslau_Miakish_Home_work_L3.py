@@ -4,11 +4,11 @@ hat_list = [1, 2, 3, 4, 5]
 
 print(len(hat_list))
 
-number = int(input("Enter number: ")) # Enter number for line.
-hat_list[2] = number # Reokace middle number with an integer
+number = int(input("Enter number: "))  # Enter number for line.
+hat_list[2] = number  # Reokace middle number with an integer
 print(hat_list)
 
-hat_list.pop() # Remove the last element
+hat_list.pop()  # Remove the last element
 print(hat_list)
 
 print(len(hat_list))
@@ -26,8 +26,8 @@ print("Step 2:", beatles)
 
 # Add the last members of the band to the list.
 for i in range(2):
-   beatles.append(input("Add following members of the band "))
-print("Step 3:",beatles)
+    beatles.append(input("Add following members of the band "))
+print("Step 3:", beatles)
 
 # Us pop() or remove() metods to remove Stu and Pete.
 del beatles[-1]

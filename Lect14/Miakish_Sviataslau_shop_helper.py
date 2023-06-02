@@ -44,4 +44,3 @@ xml_tree.add_tags_with_text(product3, {
 
 tree = ET.ElementTree(root)
 tree.write('shop.xml', 'UTF-8', True)
-
